@@ -7,7 +7,13 @@ import rootReducer from "./reducers";
 import { Provider } from "react-redux";
 
 const store = configureStore(
-  { reducer: rootReducer },
+  {
+    reducer: rootReducer,
+    middleware: (getDefaultMiddleware) =>
+      getDefaultMiddleware({
+        serializableCheck: false,
+      }),
+  },
   window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
 );
 
