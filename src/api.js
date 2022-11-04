@@ -30,12 +30,10 @@ const currentMonth = getCurrentMonth();
 const currentDay = getCurrentDay();
 const currentDate = `${currentYear}-${currentMonth}-${currentDay}`;
 const lastYear = `${currentYear - 1}-${currentMonth}-${currentDay}`;
-const nextYear = `${currentYear + 1}-${currentMonth}-${currentDay}`;
+// const nextYear = `${currentYear + 1}-${currentMonth}-${currentDay}`;
 // console.log();
 
 //popular games
 const popular_games = `games?key=${api_key}&dates=${lastYear},${currentDate}&ordering=-rating&page_size=10`;
 
 export const popularGamesUrl = () => `${base_url}${popular_games}`;
-
-console.log(popularGamesUrl());
