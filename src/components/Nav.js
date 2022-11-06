@@ -2,10 +2,11 @@ import { useState } from "react";
 //Animation
 import styled from "styled-components";
 import { motion } from "framer-motion";
-import logo from "../img/logo.svg";
+import logo from "../img/logo1.svg";
 //Redux and Routes
 import { fetchSearch } from "../actions/gamesAction";
 import { useDispatch } from "react-redux";
+import { fadein } from "../animations";
 
 const Nav = () => {
   const dispatch = useDispatch();
@@ -26,7 +27,7 @@ const Nav = () => {
   };
 
   return (
-    <StyledNav>
+    <StyledNav variants={fadein} initial="hidden" animate="show">
       <Logo onClick={clearSearched}>
         <img src={logo} alt="" />
         <h1>goplayer</h1>
@@ -75,8 +76,9 @@ const Logo = styled(motion.div)`
   padding: 1rem;
   cursor: pointer;
   img {
-    height: 2rem;
-    width: 2rem;
+    margin: 10px;
+    height: 3rem;
+    width: 3rem;
   }
 `;
 
