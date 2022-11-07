@@ -62,7 +62,7 @@ const GameDetail = ({ pathId }) => {
       case "Android":
         return android;
       default:
-        return gamepad;
+        return gamepad && <h3>{platform}</h3>;
     }
   };
 
@@ -82,8 +82,9 @@ const GameDetail = ({ pathId }) => {
               <Info>
                 <h3>Platforms</h3>
                 <Platforms>
-                  {game.platforms.map((data) => (
+                  {game.platforms?.map((data) => (
                     <img
+                      className="plat"
                       key={data.platform.id}
                       alt={data.platform.name}
                       src={getPlatform(data.platform.name)}
@@ -93,11 +94,13 @@ const GameDetail = ({ pathId }) => {
               </Info>
             </Stats>
             <Media>
-              <motion.img
-                layoutId={`image ${pathId}`}
-                src={smallImage(game.background_image, 640)}
-                alt={game.background_image}
-              />
+              {game.background_image && (
+                <motion.img
+                  layoutId={`image ${pathId}`}
+                  src={smallImage(game.background_image, 640)}
+                  alt={game.background_image}
+                />
+              )}
             </Media>
             <Description>
               <p>{game.description_raw}</p>
@@ -131,7 +134,7 @@ const CardShadow = styled(motion.div)`
     width: 0.5rem;
   }
   &::-webkit-scrollbar-thumb {
-    background-color: #ff7676;
+    background-color: #fcca46;
   }
   &::-webkit-scrollbar-track {
     background: white;
@@ -149,12 +152,21 @@ const Detail = styled(motion.div)`
   img {
     width: 100%;
   }
+  @media (max-width: 900px) {
+    padding: 1rem 2rem;
+  }
+  @media (max-width: 425px) {
+    padding: 1rem 1rem;
+  }
 `;
 
 const Stats = styled(motion.div)`
   display: flex;
   align-items: center;
   justify-content: space-between;
+  @media (max-width: 900px) {
+    flex-direction: column;
+  }
   img {
     width: 2rem;
     height: 2rem;
@@ -164,11 +176,19 @@ const Stats = styled(motion.div)`
 
 const Info = styled(motion.div)`
   text-align: center;
+  @media (max-width: 786px) {
+    .plat {
+      margin-left: 20px;
+    }
+  }
 `;
 
 const Platforms = styled(motion.div)`
   display: flex;
   justify-content: space-evenly;
+  .plat {
+    filter: grayscale(100);
+  }
   img {
     margin-left: 3rem;
   }
