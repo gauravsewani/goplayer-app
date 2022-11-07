@@ -53,6 +53,8 @@ const GameDetail = ({ pathId }) => {
         return playstation5;
       case "Xbox One":
         return xbox;
+      case "Xbox Series S/X":
+        return xbox;
       case "PC":
         return steam;
       case "Nintendo Switch":
